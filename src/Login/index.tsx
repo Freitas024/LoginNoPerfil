@@ -1,30 +1,21 @@
-import { useState,ChangeEvent } from 'react';
-import axios, { AxiosRequestHeaders } from 'axios';
+import { useState, ChangeEvent } from 'react';
+import axios from 'axios';
 
 export default function Login() {
 
-  const [email,setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  
+
   const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
 
     setEmail(event.target.value);
 
-    console.log(email);
   }
 
-  const handleChangePassword = (event:ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
 
     setPassword(event.target.value);
 
-    console.log(password);
-  }
-
-  //headers para requisição.
-  const headers = {
-    'Authorization': '86a3ad9kr',
-    'Accept': 'application/json;version=v1_web',
-    'Content-Type': 'application/json'
   }
 
   const fetchData = async () => {
@@ -55,12 +46,23 @@ export default function Login() {
     }
   };
 
+
   return (
     <div className='flex flex-col'>
       <h1>B2BIT</h1>
-      <input className="border-solid border-2 border-sky-500" type='Email' value={email} onChange={handleChangeEmail}/>
-      <input className="border-solid border-2 border-sky-500" type='password' value={password} onChange={handleChangePassword}/>
-      <button onClick={fetchData}>Sign in</button>
+      <input
+        className="border-solid border-2 border-sky-500"
+        type='Email'
+        value={email}
+        onChange={handleChangeEmail}
+      />
+      <input
+        className="border-solid border-2 border-sky-500"
+        type='password'
+        value={password}
+        onChange={handleChangePassword}
+      />
+      <button className='bg-blue-400 text-white'>Sign in</button>
     </div>
   );
 }
