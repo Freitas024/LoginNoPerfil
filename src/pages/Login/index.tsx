@@ -1,7 +1,9 @@
 import { useState, ChangeEvent } from 'react';
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -24,17 +26,26 @@ export default function Login() {
     }
   };
 
-  const postData = async () => {
+  const handleClick = async () => {
     const url = 'https://api.homologation.cliqdrive.com.br/auth/login/';
 
     const data = {
-      Email: email,
-      Password: password,
+      email: email, 
+      password: password,
     };
+
+    const headers = {
+      //'Authorization':`Bearer ${import.meta.env.VITE_AUTH_TOKEN}`,
+      'Accept': 'application/json;version=v1_web',
+      'Content-Type': 'application/json'
+    }
     
     try {
-      const response = await axios.post(url, data);
-      console.log(response.data);
+      const response = await axios.post(url, data, {headers});
+      if(response.status === 200){
+        localStorage.setItem('user_token', response.data.tokens.access);
+        navigate('/profile');
+      }
     } catch (error) {
       console.error('Error:', error);
     }
@@ -56,7 +67,7 @@ export default function Login() {
         value={password}
         onChange={handleChangePassword}
       />
-      <button className='bg-blue-400 text-white'>Sign in</button>
+      <button disabled={!email || !password} onClick={handleClick} className='bg-blue-400 text-white'>Sign in</button>
     </div>
   );
 }
