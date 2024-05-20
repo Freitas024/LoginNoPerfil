@@ -70,7 +70,7 @@ export default function Perfil() {
         </div>
         <div className="m-4 flex flex-col">
           <label className="m-2">
-            Your<span className="font-bold">E-mail</span>
+            Your <span className="font-bold">E-mail</span>
           </label>
           <input
             placeholder={userData.email}

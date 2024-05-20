@@ -6,6 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [errorMensage, setErrorMensage] = useState<string>("");
 
   const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -50,6 +51,14 @@ export default function Login() {
     } catch (error) {
       console.error("Error:", error);
     }
+
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(email)) {
+      const alert = "Email ou senha incorretos.";
+      setErrorMensage(alert);
+      return;
+    }
   };
 
   return (
@@ -58,8 +67,10 @@ export default function Login() {
         <h1 className="text-8xl font-bold text-[#02274F] text-center">
           B2B<span className="text-[#FDCF00]">IT</span>
         </h1>
-
         <div className="flex flex-col">
+          {errorMensage && (
+            <p className="text-[#ff4848] text-xs">{errorMensage}</p>
+          )}
           <label className="font-bold my-4">E-mail</label>
           <input
             placeholder="@gmail.com"
@@ -73,9 +84,9 @@ export default function Login() {
         <div className="flex flex-col">
           <label className="font-bold my-4">Password</label>
           <input
+            type="password"
             placeholder="**************"
             className="bg-[#F1F1F1] rounded-md h-14 px-4"
-            type="password"
             value={password}
             onChange={handleChangePassword}
           />
