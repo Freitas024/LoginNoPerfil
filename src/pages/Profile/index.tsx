@@ -32,17 +32,23 @@ export default function Perfil() {
         email: response.data.email,
         image: response.data.avatar.medium,
       });
-
-      console.log(userData);
     } catch (error) {
       console.log("ERROR:", error);
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user_token");
+    navigate("/");
+  };
+
   return (
     <div className="bg-[#F1F5F9] h-screen grid place-items-center">
       <header className="bg-white w-screen h-20 flex items-center justify-end fixed top-0 left-0">
-        <button className="bg-[#02274F] text-white py-2 w-80 h-12 rounded-md font-semibold m-12">
+        <button
+          onClick={handleLogout}
+          className="bg-[#02274F] text-white py-2 w-80 h-12 rounded-md font-semibold m-12"
+        >
           Logout
         </button>
       </header>
