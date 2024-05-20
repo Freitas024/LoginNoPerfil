@@ -61,21 +61,19 @@ export default function Perfil() {
         />
         <div className="m-4 flex flex-col">
           <label className="m-2">
-            Your <span className="font-bold">Name</span>
+            Your <span className="font-bold text-black">Name</span>
           </label>
-          <input
-            placeholder={userData.name}
-            className="bg-[#F1F1F1] rounded-md px-2 py-4 w-80 placeholder:text-black"
-          />
+          <p className="bg-[#F1F1F1] rounded-md px-4 py-4 w-80">
+            {userData.name}
+          </p>
         </div>
         <div className="m-4 flex flex-col">
           <label className="m-2">
             Your <span className="font-bold">E-mail</span>
           </label>
-          <input
-            placeholder={userData.email}
-            className="bg-[#F1F1F1] rounded-md px-2 py-4 w-80 placeholder:text-black"
-          />
+          <p className="bg-[#F1F1F1] rounded-md px-4 py-4 w-80">
+            {userData.email}
+          </p>
         </div>
       </div>
     </div>
