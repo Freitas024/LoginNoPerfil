@@ -1,10 +1,11 @@
-import react, { useEffect } from "react";
+import react, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Perfil() {
   const userToken = localStorage.getItem("user_token");
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     if (!userToken) {
@@ -25,8 +26,14 @@ export default function Perfil() {
 
     try {
       const response = await axios.get(url, { headers });
-      localStorage.setItem("user_Data", response.data);
-      console.log(response.data);
+
+      setUserData({
+        name: response.data.name,
+        email: response.data.email,
+        image: response.data.avatar.medium,
+      });
+
+      console.log(userData);
     } catch (error) {
       console.log("ERROR:", error);
     }
@@ -39,17 +46,31 @@ export default function Perfil() {
           Logout
         </button>
       </header>
-      <div className="bg-white w-1/5 h-3/6 p-12 grid grid-rows-4 shadow-[0_0px_12px_0px_rgba(0,0,0,0.1)] rounded-xl">
-        <h1 className="font-normal text-center text-center">profile picture</h1>
-        <h3 className="text-center"></h3>
-        <label className="m-4">
-          Your <span className="font-bold">Name</span>
-        </label>
-        <h2 className="bg-[#F1F1F1] rounded-md px-2 h-8">name</h2>
-        <label className="m-4">
-          Your<span className="font-bold">E-mail</span>
-        </label>
-        <h2 className="bg-[#F1F1F1] rounded-md px-2 h-8">Email</h2>
+      <div className="bg-white p-12 flex justify-center items-center flex-col shadow-[0_0px_12px_0px_rgba(0,0,0,0.1)] rounded-xl">
+        <h1 className="h-6 font-normal text-center m-4">profile picture</h1>
+        <img
+          src={userData.image}
+          alt="Imagem b2bit"
+          className="w-48 self-center justify-self-center"
+        />
+        <div className="m-4 flex flex-col">
+          <label className="m-2">
+            Your <span className="font-bold">Name</span>
+          </label>
+          <input
+            placeholder={userData.name}
+            className="bg-[#F1F1F1] rounded-md px-2 py-4 w-80 placeholder:text-black"
+          />
+        </div>
+        <div className="m-4 flex flex-col">
+          <label className="m-2">
+            Your<span className="font-bold">E-mail</span>
+          </label>
+          <input
+            placeholder={userData.email}
+            className="bg-[#F1F1F1] rounded-md px-2 py-4 w-80 placeholder:text-black"
+          />
+        </div>
       </div>
     </div>
   );
