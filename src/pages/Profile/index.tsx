@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { profileUrl } from "../../constants";
+import client from "../../services/client";
 
 export default function Perfil() {
   const userToken = localStorage.getItem("user_token");
@@ -16,16 +17,8 @@ export default function Perfil() {
   }, []);
 
   const handleUser = async () => {
-    const url = "https://api.homologation.cliqdrive.com.br/auth/profile/";
-
-    const headers = {
-      Authorization: `Bearer ${userToken}`,
-      Accept: "application/json;version=v1_web",
-      "Content-Type": "application/json",
-    };
-
     try {
-      const response = await axios.get(url, { headers });
+      const response = await client.get(profileUrl);
 
       setUserData({
         name: response.data.name,
