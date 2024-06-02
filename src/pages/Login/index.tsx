@@ -46,8 +46,8 @@ export default function Login() {
   return (
     <div className="grid w-screen place-items-center">
       <div className="bg-white h-[550px] mt-16 w-96 rounded-2xl p-4 grid grid-rows-4 gap-4 shadow-[0_0px_24px_3px_rgba(0,0,0,0.3)] items-center">
-        <h1 className="text-8xl font-bold text-[#02274F] text-center">
-          B2B<span className="text-[#FDCF00]">IT</span>
+        <h1 className="text-8xl font-bold text-[#276395] text-center">
+          VI<span className="text-[#731dd8]">UX</span>
         </h1>
         <div className="flex flex-col">
           {errorMessage && (
@@ -74,7 +74,7 @@ export default function Login() {
             onChange={handleChangePassword}
           />
           <button
-            className="flex flex-row items-center justify-center text-[#02274f] cursor-pointer my-2 p-2 hover:text-[#FFFFFF] hover:bg-[#02274f] hover:duration-700 w-36 rounded-lg"
+            className="flex flex-row items-center justify-center text-[#276395] cursor-pointer my-2 p-2 hover:text-[#FFFFFF] hover:bg-[#276395] hover:duration-700 w-36 rounded-lg"
             onClick={() => {
               if (!showPassword) {
                 setShowPassword(true);
@@ -89,7 +89,7 @@ export default function Login() {
         <button
           disabled={!email || !password}
           onClick={handleClick}
-          className="bg-[#02274F] text-white py-2 h-12 rounded-md font-semibold"
+          className="bg-[#731dd8] text-white py-2 h-12 rounded-md font-semibold hover: cursor-pointer"
         >
           Sign in
         </button>

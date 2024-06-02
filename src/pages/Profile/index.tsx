@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { profileUrl } from "../../constants";
 import client from "../../services/client";
@@ -40,7 +40,7 @@ export default function Perfil() {
       <header className="bg-white w-screen h-20 flex items-center justify-end fixed top-0 left-0">
         <button
           onClick={handleLogout}
-          className="bg-[#02274F] text-white py-2 w-80 h-12 rounded-md font-semibold m-12"
+          className="bg-[#731dd8] text-white py-2 w-80 h-12 rounded-md font-semibold m-12"
         >
           Logout
         </button>
